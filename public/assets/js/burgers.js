@@ -4,7 +4,7 @@ $(function() {
         var id = $(this).data("id");
 
         var eatStatus = {
-            devoured: 1
+            devoured: true
         }
 
         $.ajax("/api/burgers/" + id, {
@@ -24,7 +24,7 @@ $(function() {
         if(name !== "") {
             var newBurger = {
                 burger_name: name,
-                devoured: 0
+                devoured: false
             }
 
         $.ajax("/api/burgers", {

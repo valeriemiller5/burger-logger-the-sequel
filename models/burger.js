@@ -1,22 +1,27 @@
-// Import ORM
-var orm = require("../config/orm.js");
+module.exports = function(sequelize, DataType) {
 
-var burger = {
-  selectAll: function(cb) {
-    orm.selectAll("burgers", function(res) {
-      cb(res);
-    });
-  },
-  insertOne: function(cols, vals, cb) {
-    orm.insertOne("burgers", cols, vals, function(res) {
-      cb(res);
-    });
-  },
-  updateOne: function(objColVals, condition, cb) {
-    orm.updateOne("burgers", objColVals, condition, function(res) {
-      cb(res);
-    });
-  }
+  var Burger = sequelize.define("Burger", {
+    id: {
+      autoIncrement: true,
+      type: DataType.INTEGER,
+      primaryKey: true
+    },
+    burger_name: {
+      type: DataType.STRING,
+      allowNull: false, 
+      validate: {
+        len: [1]
+      }
+    },
+    devoured: {
+      type: DataType.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    }
+  }, {
+    timestamps: true,
+    createdAt: true
+  });
+
+  return Burger;
 };
-
-module.exports = burger;
