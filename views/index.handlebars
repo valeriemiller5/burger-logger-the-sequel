@@ -1,0 +1,46 @@
+<h1 style="margin-left: 43%; color: darkorchid; font-family: 'Quicksand', sans-serif;"><strong>Let's Eat!</strong></h1>
+
+{{!-- This will populate burger names from MySQL table "burgers" --}}
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <ul>
+        {{#each burgers}}
+          {{#unless this.devoured}}
+            {{> burgers/burger-block}}
+          {{/unless}}
+        {{/each}}
+      </ul>
+    </div>
+    
+{{!-- This will list all burgers that have been devoured --}}
+    <div class="col-md-6">
+      <ul>
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <li>{{id}}. {{burger_name}}</li>
+          {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+{{!-- This will submit the user input into the database --}}
+<h4 id="title" style="margin-left: 43%; font-family: 'Quicksand', sans-serif;"><strong>Name a Burger!</strong></h4>
+
+<div class="row">
+  <div class="col-md-12">
+    <form class="burgerForm" style="margin-left: 38%">
+      <div class="inputBox">
+          <label for="name"></label>
+          <textarea id="name" name="burgerName" cols="45" rows="5" placeholder="Name your burger"></textarea>
+      </div>
+      <button style="margin-left: 12%" class="btn btn-secondary" id="makeBurger" type="submit">Make a Burger</button>
+      <br>
+      <br>
+    </form> 
+  </div>
+</div>
+
