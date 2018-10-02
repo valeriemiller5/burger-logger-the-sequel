@@ -9,7 +9,7 @@ router.get("/", function(req, res) {
       var hbsObject = {
         burgers: data
       };
-      console.log(hbsObject);
+      // console.log(hbsObject);
       res.render("index", hbsObject);
   });
 });
@@ -23,18 +23,20 @@ router.post("/api/burgers", function(req, res) {
 });
 
 router.put("/api/burgers/:id?", function(req, res) {
-  var condition = "id = " + req.params.id;
-  console.log("Condition: " + condition);
-
   db.Burger.update({
     devoured: true
-  }, {
+   }, {
     where: {
-      id: condition
+      id: req.params.id
     }
-  }).then(function() {
-    res.redirect("/.change-devour");
-  })
+   }).then(function(data) {
+      console.log("Update has been made.")
+      res.json(data);
+   })
+    .catch(function(err) {
+      res.json(err);
+    });
 });
+
 // Routes exported to server.js
 module.exports = router;
