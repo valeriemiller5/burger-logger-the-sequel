@@ -1,5 +1,4 @@
 module.exports = function(sequelize, DataType) {
-
   var Burger = sequelize.define("Burger", {
     id: {
       autoIncrement: true,
